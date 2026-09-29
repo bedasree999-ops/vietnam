@@ -1,4 +1,5 @@
 const viewer = document.querySelector('#viewer');
+const viewerStage = document.querySelector('#viewer-stage');
 const fullPhoto = document.querySelector('#full-photo');
 const caption = document.querySelector('#photo-caption');
 const fullscreenButton = document.querySelector('#fullscreen');
@@ -18,8 +19,8 @@ fullscreenButton.addEventListener('click', async () => {
     if (document.fullscreenElement) {
       await document.exitFullscreen();
     } else {
-      // Dialog elements cannot request fullscreen; keep the modal above the page.
-      await document.documentElement.requestFullscreen();
+      // Fullscreen only the selected photo and its controls, never the gallery.
+      await viewerStage.requestFullscreen();
       viewerFullscreen = true;
     }
   } catch {
